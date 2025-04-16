@@ -32,7 +32,6 @@ public class AuthInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-
         response.sendRedirect("/login");
         return false;
     }
@@ -41,7 +40,6 @@ public class AuthInterceptor implements HandlerInterceptor {
         if (request.getCookies() == null) {
             return null;
         }
-
         return Arrays.stream(request.getCookies())
                 .filter(cookie -> "user".equals(cookie.getName()))
                 .map(Cookie::getValue)

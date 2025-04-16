@@ -33,11 +33,10 @@ public class LoginController {
     public String doLogin(
             @RequestParam String email,
             @RequestParam String password,
-            HttpServletRequest request,
             HttpServletResponse response,
             Model model
     ) {
-        Optional<Account> userOpt = accountRepository.findByEmail(email);
+        Optional<Account> userOpt = accountRepository.findByEmailAndStatus(email, Account.Status.ON);
 
         if (userOpt.isPresent()) {
             String hashedPassword = HashUtil.sha256(password);
